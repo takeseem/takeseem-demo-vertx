@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" monitorInterval="5">
+	<Properties>
+		<Property name="logPath">${env:LOG_ROOT:-logs}/${env:pom_a:-takeseem-demo-vertx}</Property>
+		<Property name="CONSOLE_LOG_PATTERN">%d %-5p [%t] %m (%F:%L)%c.%M%n</Property>
+	</Properties>
+	
+	<Appenders>
+		<Console name="Console">
+			<PatternLayout pattern="${sys:CONSOLE_LOG_PATTERN}" />
+		</Console>
+		<RollingRandomAccessFile name="allFile" fileName="${logPath}/all.log" filePattern="${logPath}/all.log.%d{yyyy-MM-dd}" immediateFlush="false">
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+			<PatternLayout pattern="${sys:CONSOLE_LOG_PATTERN}" />
+		</RollingRandomAccessFile>
+	</Appenders>
+
+	<Loggers>
+		<Logger name="com.takeseem.demo.vertx" level="debug" />
+		
+		<AsyncRoot level="info" includeLocation="true">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="allFile" />
+		</AsyncRoot>
+	</Loggers>
+</Configuration>

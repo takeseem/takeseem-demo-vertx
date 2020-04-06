@@ -1,0 +1,17 @@
+logs
+target
+hs_err_pid*
+
+.DS_*
+
+.apt*
+.c*
+.f*
+.i*
+.p*
+.s*
+
+.idea
+*.iws
+*.iml
+*.ipr
